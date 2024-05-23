@@ -26,6 +26,8 @@ do
 
     # Run the foo script for testing
     python foo.py "$tar_file"
+
+    chmod +x ./foo.sh
     ./foo.sh
 
     # Stage and commit the newly created file "$branch.tar.bz2"
