@@ -16,7 +16,7 @@ do
     echo
     echo
     git checkout $branch
-    git pull
+    git pull origin $branch
     echo "Current branch: $branch"
     
     # current_branch=$branch
