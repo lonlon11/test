@@ -4,9 +4,11 @@
 remote_branches=$(git branch -r)
 
 # Filter the list to only contain 'main' and 'Optimization_X' branches, excluding 'HEAD'.
-filtered_branches=$(echo "$remote_branches" | grep -E 'origin/(main|Optimization_)' | grep -v 'HEAD')
-# echo "Filtered branches (only 'main' and 'Optimization_X', excluding 'HEAD'):"
-# echo "$filtered_branches"
+# Remove origin/ from the branch names
+filtered_branches=$(echo "$remote_branches" | grep -E "origin/main|origin/Optimization_[0-9]+" | sed 's/origin\///')
+
+# filtered_branches=$(echo "$remote_branches" | grep -E 'origin/(main|Optimization_)' | grep -v 'HEAD')
+
 
 # Loop through the filtered branches and list all folders in the root directory of the repository
 for branch in $filtered_branches
@@ -14,7 +16,7 @@ do
 
     # Checkout the branch, pull the latest changes, and echo the name of the branch
     echo
-    echo
+    echo 
     git checkout $branch
     git pull origin $branch
     echo "Current branch: $branch"
