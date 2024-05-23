@@ -15,11 +15,17 @@ for branch in $filtered_branches
 do
 
     # Checkout the branch, pull the latest changes, and echo the name of the branch
-    echo
-    echo 
     git checkout $branch
     git pull origin $branch
     echo "Current branch: $branch"
+
+    # Run the foo script for testing
+    python foo.py $branch
+
+    # Stage and commit the newly created file "$branch.tar.bz2"
+    git add "$branch.tar.bz2"
+    git commit -m "add $branch.tar.bz2, created at $(date)"
+    git push origin $branch
     
     # current_branch=$branch
     # # If current branch is 'main', rename it to 'Baseline'
