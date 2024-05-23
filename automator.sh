@@ -14,9 +14,6 @@ filtered_branches=$(echo "$remote_branches" | grep -E "origin/main|origin/Optimi
 for branch in $filtered_branches
 do
 
-    if [ $branch == "main" ]; then
-        branch="Baseline"
-    fi
 
     echo
     echo "===================================================================================================="
@@ -25,12 +22,19 @@ do
     git pull origin $branch
     echo "Current branch: $branch"
 
+
+    # Name of the tar file
+    if [ $branch == "main" ]; then
+        tar_file="Baseline"
+    else
+        tar_file=$branch
+
     # Run the foo script for testing
-    python foo.py $branch
+    python foo.py $tar_file
 
     # Stage and commit the newly created file "$branch.tar.bz2"
-    git add "$branch.tar.bz2"
-    git commit -m "add $branch.tar.bz2, created at $(date)"
+    git add "$tar_file.tar.bz2"
+    git commit -m "add $tar_file.tar.bz2, created at $(date)"
     git push origin $branch
 
     echo "===================================================================================================="
