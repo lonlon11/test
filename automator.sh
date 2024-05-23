@@ -26,6 +26,7 @@ do
 
     # Run the foo script for testing
     python foo.py "$tar_file"
+    ./foo.sh
 
     # Stage and commit the newly created file "$branch.tar.bz2"
     git add "$tar_file.tar.bz2"
