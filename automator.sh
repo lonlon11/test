@@ -14,6 +14,12 @@ filtered_branches=$(echo "$remote_branches" | grep -E "origin/main|origin/Optimi
 for branch in $filtered_branches
 do
 
+    if [ $branch == "main" ]; then
+        branch="Baseline"
+    fi
+
+    echo
+    echo "===================================================================================================="
     # Checkout the branch, pull the latest changes, and echo the name of the branch
     git checkout $branch
     git pull origin $branch
@@ -26,6 +32,9 @@ do
     git add "$branch.tar.bz2"
     git commit -m "add $branch.tar.bz2, created at $(date)"
     git push origin $branch
+
+    echo "===================================================================================================="
+
     
     # current_branch=$branch
     # # If current branch is 'main', rename it to 'Baseline'
