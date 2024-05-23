@@ -13,6 +13,8 @@ for branch in $filtered_branches
 do
 
     # Checkout the branch, pull the latest changes, and echo the name of the branch
+    echo
+    echo
     git checkout $branch
     git pull
     echo "Current branch: $branch"
